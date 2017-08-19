@@ -2,8 +2,40 @@
 <html lang="en">
 <head>
 	<title>Date Night</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Not sure where to go out? We do!">
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-
+	<section role="region" id="homepage">
+		<h1>Date Night</h1>
+		<div id="buttons">
+			<button id="food">food</button>
+			<button id="fun">fun</button>
+			<button id="entertainment">entertainment</button><br>
+		</div>
+		<form class="search" role="form" id="search">
+			<label for="searchbar">
+				<input class=" searchbar" type="text" name="search" placeholder="Burger">
+			</label>
+			<label for="submit">
+				<input class="submit" type="submit" value="Search">
+			</label>
+		</form>
+	</section>
+	<section id="container" role="region">
+		<header role="banner" id="nav"></header>
+		<div id="results"></div>
+		<div id="map"></div>
+		
+	</section>
+	<footer role="contentinfo" id="copyright">
+		<p>Copyright © 2017</p>
+	</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="index.js" type="text/javascript"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJnuciyBTCyfkqfvfRFaHFIVlpAFBrGzw">
+    </script>
 </body>
 </html>

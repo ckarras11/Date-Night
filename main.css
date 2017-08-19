@@ -1,0 +1,51 @@
+h1{
+	text-align: center;
+	margin-top: 200px;
+	font-size: 56px;
+}
+
+#search, #buttons{
+	text-align: center;
+}
+
+.searchbar{
+	margin-top: 15px;
+}
+
+#copyright{
+	text-align: center;
+}
+
+#nav{
+	height: 50px;
+	margin-top: 10px;
+
+}
+
+#results{
+	float: right;
+	display: flex;
+	align-items: flex-start;
+}
+#map{
+	height: 500px;
+	width: 1000px;
+}
+
+ul{
+	width: 300px;
+	height: 500px;
+	overflow: auto;
+
+}
+.itemResult{
+	list-style: none;
+	border: solid black 1px;
+	padding: 10px;
+	
+
+}
+
+.js-hide-display{
+	display: none;
+}
