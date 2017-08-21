@@ -2,7 +2,6 @@ let clientId = "SSYNT1OJ1S0G44S211LRDRBAY530BAYWZYQXCXDUDN4DYAYK"
 let clientSecret = "SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA"
 let coordinates = [];
 let map;
-//const URL = `https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&ll=41.715624,-70.032247&query=restaurant&limit=100&radius=200000&v=20170323`;
 
 //This function is the intital api call
 
@@ -20,32 +19,54 @@ function getResponse(section, query){
 		url: URL,
 		success: function(data){
 			console.log(data);
-			$("#nav").append('<h2>Search Again</h2>')
 			//This creates list element for each item returned
-			let list = ""
+			let list = "";
 			data.response.groups[0].items.forEach(item => {
-				list = list.concat(`<li class="itemResult">${item.venue.name}</li>`)
+				let address = `${item.venue.location.address} 
+							   ${item.venue.location.city}, 
+							   ${item.venue.location.state} 
+							   ${item.venue.location.postalCode}`
+				let rating;
+				if (item.venue.rating !== undefined){
+					rating = `
+					<div class="rating">
+						<div class="score" style="background-color: #${item.venue.ratingColor};">
+							${item.venue.rating}
+						</div>
+					</div>`
+				}
+				else{
+					rating = "";
+				}
+				list = list.concat(`<li class="itemResult">
+										<div class="info">
+											<div class="venueName">
+												${item.venue.name}
+											</div>
+											<div class="location">
+												${address}
+											</div>
+											<div class="moreInfo">
+												<a href="https://foursquare.com/v/${item.venue.id}?ref=${clientId}" target="blank">More Info</a>
+											</div>
+										</div>
+										${rating}
+									</li>`)
 			})
 			//This creates a lat long object for each item returned and pushes to array
 			data.response.groups[0].items.forEach(item => {
 				let obj = {lat: item.venue.location.lat,
-						   lng: item.venue.location.lng};
+						   lng: item.venue.location.lng,
+						   name: item.venue.name};
 				
 				coordinates.push(obj);
 			});
-			//Initializes map after succesful api call
 			initMap();
-			//Loops through each item in coordinates array and creates a marker on the map
-			console.log(coordinates.length);
-			for (let i = 0; i < coordinates.length; i++) {
-        		console.log(coordinates[i]);
-          		let coords = coordinates[i];
-          		let latLng = new google.maps.LatLng(coords.lat,coords.lng);
-          		let marker = new google.maps.Marker({
-            		position: latLng,
-            		map: map
-          			});
-        	}
+			addMarkers();
+			
+
+			
+
         	//Adds a ul element with the list created in for loop
 			$('#results').append(`<ul id="resultsList">
 									${list}
@@ -59,29 +80,43 @@ function getResponse(section, query){
 //Handles search and passes value in search bar to query for api call
 //The section arg is undefined because it will override a query
 
-function handleQuery(){
+$(function handleQuery(document){
 	$('.search').on('click', '.submit', function(e){
 		$('#results').html('');
 		e.preventDefault();
-		console.log('click')
 		let query = $('.searchbar').val();
-		console.log(query);
 		$('#homepage').addClass("js-hide-display");
+		$('#container').removeClass("js-hide-display");
 		getResponse(undefined, query);
 		
 	});
-};
+});
 
 //Handles food button and passes 'food' to the section arg
 
-function handleButtons(){
+$(function handleButtons(document){
 	$('#buttons').on('click', '#food', function(){
 		$('#results').html('');
 		$('#homepage').addClass("js-hide-display");
+		$('#container').removeClass("js-hide-display");
 		let section = 'food';
 		getResponse(section);
 	});
-};
+	$('#buttons').on('click', '#drinks', function(){
+		$('#results').html('');
+		$('#homepage').addClass("js-hide-display");
+		$('#container').removeClass("js-hide-display");
+		let section = 'drinks';
+		getResponse(section);
+	});
+	$('#buttons').on('click', '#entertainment', function(){
+		$('#results').html('');
+		$('#homepage').addClass("js-hide-display");
+		$('#container').removeClass("js-hide-display");
+		let section = 'arts';
+		getResponse(section);
+	});
+});
 
 //Creates map in #map div with map centered on lat long
 
@@ -94,5 +129,39 @@ function initMap() {
 		});
 }
 
-$(handleQuery);
-$(handleButtons);
+//Adds markers to the map from the coordinates array (data from foursquare lat long)
+
+function addMarkers(){
+	for (let i = 0; i < coordinates.length; i++) {
+        let coords = coordinates[i];
+        let latLng = new google.maps.LatLng(coords.lat,coords.lng);
+        let marker = new google.maps.Marker({
+            								position: latLng,
+            								map: map,
+            								title: `${coords.name}`
+          									});
+    }
+}
+
+//Handles Search again button on the results page
+
+$(function searchAgain(document){
+	$("#nav").on('click', '.searchAgain', function(){
+		$('#homepage').removeClass("js-hide-display");
+		$('#container').addClass("js-hide-display");
+		removeMarkers();
+		$(".searchbar").val("");
+
+
+	})
+});
+
+function removeMarkers(){
+	coordinates = [];
+};
+
+function toggleBounce(){
+	$('#results').on('click', 'li', function(){
+		console.log('click');
+	})
+}; 

@@ -5,26 +5,32 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Not sure where to go out? We do!">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<!--<link rel="stylesheet" type="text/css" href="float-grid.css">-->
 </head>
 <body>
 	<section role="region" id="homepage">
 		<h1>Date Night</h1>
 		<div id="buttons">
-			<button id="food">food</button>
-			<button id="fun">fun</button>
-			<button id="entertainment">entertainment</button><br>
+			<button id="food">Food</button>
+			<button id="drinks">Drinks</button>
+			<button id="entertainment">Entertainment</button><br>
 		</div>
 		<form class="search" role="form" id="search">
 			<label for="searchbar">
-				<input class=" searchbar" type="text" name="search" placeholder="Burger">
+				<input class=" searchbar" type="text" name="search" placeholder="Mabye some Chinese?">
 			</label>
 			<label for="submit">
 				<input class="submit" type="submit" value="Search">
 			</label>
 		</form>
+		<div class="slogan">
+			<p>Where do you want to go? I don't know.... WE DO!</p>
+		</div>
 	</section>
-	<section id="container" role="region">
-		<header role="banner" id="nav"></header>
+	<section id="container" class="js-hide-display" role="region">
+		<header role="banner" id="nav">
+			<button class="searchAgain">Search Again</button>
+		</header>
 		<div id="results"></div>
 		<div id="map"></div>
 		

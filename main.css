@@ -11,7 +11,9 @@ h1{
 .searchbar{
 	margin-top: 15px;
 }
-
+.slogan{
+	text-align: center;
+}
 #copyright{
 	text-align: center;
 }
@@ -19,7 +21,6 @@ h1{
 #nav{
 	height: 50px;
 	margin-top: 10px;
-
 }
 
 #results{
@@ -29,23 +30,48 @@ h1{
 }
 #map{
 	height: 500px;
-	width: 1000px;
+	width: 900px;
 }
 
 ul{
-	width: 300px;
+	width: 400px;
 	height: 500px;
 	overflow: auto;
-
 }
+
+#results ul li:hover{
+	background-color: #e8eaed;
+}
+
 .itemResult{
 	list-style: none;
-	border: solid black 1px;
+	border: solid 1px;
 	padding: 10px;
-	
-
 }
 
+.info, .rating{
+	display: inline-block;
+}
+
+.venueName{
+	font-weight: bold;
+}
+.location{
+	font-weight: 300;
+	font-size: 12px;
+}
+.rating{
+	float: right;
+}
+
+.score{
+	border: solid black 1px;
+	border-radius: 50%;
+	text-align: center;
+	padding: 5px;
+	width: 20px;
+
+}
 .js-hide-display{
 	display: none;
 }
