@@ -22,6 +22,7 @@ function getResponse(section, query){
 			//This creates list element for each item returned
 			let list = "";
 			data.response.groups[0].items.forEach(item => {
+				let i = data.response.groups[0].items.indexOf(item) + 1;
 				let address = `${item.venue.location.address} 
 							   ${item.venue.location.city}, 
 							   ${item.venue.location.state} 
@@ -41,7 +42,7 @@ function getResponse(section, query){
 				list = list.concat(`<li class="itemResult">
 										<div class="info">
 											<div class="venueName">
-												${item.venue.name}
+												${i}) ${item.venue.name}
 											</div>
 											<div class="location">
 												${address}
@@ -55,9 +56,11 @@ function getResponse(section, query){
 			})
 			//This creates a lat long object for each item returned and pushes to array
 			data.response.groups[0].items.forEach(item => {
+				let i = data.response.groups[0].items.indexOf(item) + 1;
 				let obj = {lat: item.venue.location.lat,
 						   lng: item.venue.location.lng,
-						   name: item.venue.name};
+						   name: item.venue.name,
+						   index: i};
 				
 				coordinates.push(obj);
 			});
@@ -140,7 +143,13 @@ function addMarkers(){
             								map: map,
             								title: `${coords.name}`
           									});
-    }
+        let infoWindow = new google.maps.InfoWindow({
+        	content: `${coords.index}) ${coords.name}`
+        });
+        marker.addListener('click', function(){
+        	infoWindow.open(map, marker);
+        });
+    };
 }
 
 //Handles Search again button on the results page
