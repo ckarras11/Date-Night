@@ -99,13 +99,9 @@ function getResponse(section, query){
 
 $(function handleQuery(document){
 	$('.search').on('click', '.submit', function(e){
-		$('#results').html('');
 		e.preventDefault();
 		let query = $('.searchbar').val();
-		$('#homepage').addClass("js-hide-display");
-		$('#container').removeClass("js-hide-display");
-		$('.mainContent').removeClass("js-hide-display");
-		$('#nav').removeClass("js-hide-display");
+		displayResults();
 		getResponse(undefined, query);
 		
 	});
@@ -115,29 +111,17 @@ $(function handleQuery(document){
 
 $(function handleButtons(document){
 	$('#buttons').on('click', '#food', function(){
-		$('#results').html('');
-		$('#homepage').addClass("js-hide-display");
-		$('#container').removeClass("js-hide-display");
-		$('.mainContent').removeClass("js-hide-display");
-		$('#nav').removeClass("js-hide-display");
+		displayResults();
 		let section = 'food';
 		getResponse(section);
 	});
 	$('#buttons').on('click', '#drinks', function(){
-		$('#results').html('');
-		$('#homepage').addClass("js-hide-display");
-		$('#container').removeClass("js-hide-display");
-		$('.mainContent').removeClass("js-hide-display");
-		$('#nav').removeClass("js-hide-display");
+		displayResults();
 		let section = 'drinks';
 		getResponse(section);
 	});
 	$('#buttons').on('click', '#entertainment', function(){
-		$('#results').html('');
-		$('#homepage').addClass("js-hide-display");
-		$('#container').removeClass("js-hide-display");
-		$('.mainContent').removeClass("js-hide-display");
-		$('#nav').removeClass("js-hide-display");
+		displayResults();
 		let section = 'arts';
 		getResponse(section);
 	});
@@ -198,8 +182,12 @@ function removeMarkers(){
 	coordinates = [];
 };
 
-function toggleBounce(){
-	$('#results').on('click', 'li', function(){
-		console.log('click');
-	})
-}; 
+//Adds and removes js-hide-display to display results
+
+function displayResults(){
+	$('#results').html('');
+	$('#homepage').addClass("js-hide-display");
+	$('#container').removeClass("js-hide-display");
+	$('.mainContent').removeClass("js-hide-display");
+	$('#nav').removeClass("js-hide-display");
+}
