@@ -4,6 +4,47 @@ h1{
 	font-size: 56px;
 }
 
+#container{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin: 0 auto;
+}
+
+@media (min-width: 1025px) {
+
+	.mainContent{
+	display: flex;
+	flex-direction: row;
+	}
+
+	#results{
+	width: 45%;
+	margin-left: auto;
+	}
+
+	#map{
+	height: 500px;
+	width: 45%;
+	}
+}
+
+}
+@media (min-width: 375px) and (max-width: 667px) {
+	.mainContent{
+		display: flex;
+		flex-direction: column;
+	}
+	#results, #map{
+		width: 100%;
+		margin: 0 auto;
+
+	}
+}
+#map{
+	height: 300px;
+	margin-bottom: 15px;
+}
 #search, #buttons{
 	text-align: center;
 }
@@ -21,22 +62,17 @@ h1{
 #nav{
 	height: 50px;
 	margin-top: 10px;
+	width: 100%;
+	margin-bottom: 20px;
 }
 
-#results{
-	float: right;
-	display: flex;
-	align-items: flex-start;
-}
-#map{
-	height: 500px;
-	width: 900px;
-}
+
 
 ul{
-	width: 400px;
 	height: 500px;
 	overflow: auto;
+	padding-left: 0;
+	margin-top: 0;
 }
 
 #results ul li:hover{
@@ -75,3 +111,4 @@ ul{
 .js-hide-display{
 	display: none;
 }
+

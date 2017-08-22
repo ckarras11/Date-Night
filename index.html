@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Not sure where to go out? We do!">
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<!--<link rel="stylesheet" type="text/css" href="float-grid.css">-->
 </head>
 <body>
 	<section role="region" id="homepage">
@@ -28,11 +27,14 @@
 		</div>
 	</section>
 	<section id="container" class="js-hide-display" role="region">
-		<header role="banner" id="nav">
+		<header role="banner" class="js-hide-display" id="nav">
 			<button class="searchAgain">Search Again</button>
 		</header>
-		<div id="results"></div>
-		<div id="map"></div>
+		<div class="mainContent">
+			<div id="map"></div>
+			<div id="results"></div>
+		</div>
+		
 		
 	</section>
 	<footer role="contentinfo" id="copyright">

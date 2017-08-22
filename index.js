@@ -23,11 +23,28 @@ function getResponse(section, query){
 			let list = "";
 			data.response.groups[0].items.forEach(item => {
 				let i = data.response.groups[0].items.indexOf(item) + 1;
-				let address = `${item.venue.location.address} 
+				/*let address = `${item.venue.location.address} 
 							   ${item.venue.location.city}, 
 							   ${item.venue.location.state} 
-							   ${item.venue.location.postalCode}`
-				let rating;
+							   ${item.venue.location.postalCode}`*/
+				let address = "";
+				if (item.venue.location.address !== undefined){
+					address = item.venue.location.address;
+				}
+				let city = "";
+				if (item.venue.location.city !== undefined){
+					city = item.venue.location.city;
+				}
+				let state = "";
+				if (item.venue.location.state !== undefined){
+					state = item.venue.location.state;
+				}
+				let postalCode = "";
+				if (item.venue.location.postalCode !== undefined){
+					postalCode = item.venue.location.postalCode;
+				}
+
+				let rating = "";
 				if (item.venue.rating !== undefined){
 					rating = `
 					<div class="rating">
@@ -36,16 +53,13 @@ function getResponse(section, query){
 						</div>
 					</div>`
 				}
-				else{
-					rating = "";
-				}
 				list = list.concat(`<li class="itemResult">
 										<div class="info">
 											<div class="venueName">
 												${i}) ${item.venue.name}
 											</div>
 											<div class="location">
-												${address}
+												${address} ${city}, ${state} ${postalCode}
 											</div>
 											<div class="moreInfo">
 												<a href="https://foursquare.com/v/${item.venue.id}?ref=${clientId}" target="blank">More Info</a>
@@ -90,6 +104,8 @@ $(function handleQuery(document){
 		let query = $('.searchbar').val();
 		$('#homepage').addClass("js-hide-display");
 		$('#container').removeClass("js-hide-display");
+		$('.mainContent').removeClass("js-hide-display");
+		$('#nav').removeClass("js-hide-display");
 		getResponse(undefined, query);
 		
 	});
@@ -102,6 +118,8 @@ $(function handleButtons(document){
 		$('#results').html('');
 		$('#homepage').addClass("js-hide-display");
 		$('#container').removeClass("js-hide-display");
+		$('.mainContent').removeClass("js-hide-display");
+		$('#nav').removeClass("js-hide-display");
 		let section = 'food';
 		getResponse(section);
 	});
@@ -109,6 +127,8 @@ $(function handleButtons(document){
 		$('#results').html('');
 		$('#homepage').addClass("js-hide-display");
 		$('#container').removeClass("js-hide-display");
+		$('.mainContent').removeClass("js-hide-display");
+		$('#nav').removeClass("js-hide-display");
 		let section = 'drinks';
 		getResponse(section);
 	});
@@ -116,6 +136,8 @@ $(function handleButtons(document){
 		$('#results').html('');
 		$('#homepage').addClass("js-hide-display");
 		$('#container').removeClass("js-hide-display");
+		$('.mainContent').removeClass("js-hide-display");
+		$('#nav').removeClass("js-hide-display");
 		let section = 'arts';
 		getResponse(section);
 	});
@@ -143,6 +165,8 @@ function addMarkers(){
             								map: map,
             								title: `${coords.name}`
           									});
+        //Creates info window showing name and index
+
         let infoWindow = new google.maps.InfoWindow({
         	content: `${coords.index}) ${coords.name}`
         });
@@ -158,12 +182,17 @@ $(function searchAgain(document){
 	$("#nav").on('click', '.searchAgain', function(){
 		$('#homepage').removeClass("js-hide-display");
 		$('#container').addClass("js-hide-display");
+		$('.mainContent').addClass("js-hide-display");
+		$('#nav').addClass("js-hide-display");
+
 		removeMarkers();
 		$(".searchbar").val("");
 
 
 	})
 });
+
+// Removes markers from map for new search
 
 function removeMarkers(){
 	coordinates = [];
