@@ -2,14 +2,16 @@ let clientId = "SSYNT1OJ1S0G44S211LRDRBAY530BAYWZYQXCXDUDN4DYAYK"
 let clientSecret = "SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA"
 let coordinates = [];
 let map;
+let start = {};
 
+      
 //This function is the intital api call
-
+//41.715624,-70.032247
 function getResponse(section, query){
 	console.log('load')
 	const URL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientId}
 															 &client_secret=${clientSecret}
-															 &ll=41.715624,-70.032247
+															 &ll=${start.lat},${start.lng}
 															 &query=${query}
 															 &section=${section}
 															 &limit=100
@@ -133,7 +135,7 @@ function initMap() {
 	console.log('initMap')
 	map = new google.maps.Map(document.getElementById('map'), {
   		zoom: 12,
-  		center: new google.maps.LatLng(41.715624,-70.032247),
+  		center: new google.maps.LatLng(start.lat,start.lng),
   		mapTypeId: 'roadmap'
 		});
 }
@@ -190,4 +192,21 @@ function displayResults(){
 	$('#container').removeClass("js-hide-display");
 	$('.mainContent').removeClass("js-hide-display");
 	$('#nav').removeClass("js-hide-display");
+}
+
+let x= navigator.geolocation
+x.getCurrentPosition(sucess, failure);
+
+function sucess(position){
+	let lat = position.coords.latitude;
+	let lng = position.coords.longitude;
+	start.lat = lat;
+	start.lng = lng;
+	console.log(lat,lng)
+
+
+
+}
+function failure(){
+	alert('Geolocation not available')
 }
