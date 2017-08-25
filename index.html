@@ -5,33 +5,34 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Not sure where to go out? We do!">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Alice|Great+Vibes" rel="stylesheet">
 </head>
 <body>
 	<section role="region" id="homepage">
 		<h1>Date Night</h1>
 		<div id="buttons">
-			<button id="food">Food</button>
-			<button id="drinks">Drinks</button>
-			<button id="entertainment">Entertainment</button><br>
+			<button id="food"><img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/food_and_drink_512pxGREY.png" alt="Picture of a loaf of bread and a bottle of wine"></button>
+			<button id="drinks"><img src="https://cdn0.iconfinder.com/data/icons/website-kit-2/512/icon_70-512.png" alt="Picture of a martini glass"></button>
+			<button id="entertainment"><img src="https://cdn2.iconfinder.com/data/icons/university-set-2/512/5-512.png" alt="Picture of theater masks"></button><br>
 		</div>
 		<form class="search" role="form" id="search">
 			<label for="searchbar">
-				<input class=" searchbar" type="text" name="search" placeholder="Mabye some Chinese?">
+				<input class=" searchbar" type="text" name="search" placeholder="Maybe some Chinese?">
 			</label>
 			<label for="submit">
-				<input class="submit" type="submit" value="Search">
+				<button class="submit"><span>Search</span></button>
 			</label>
 		</form>
 		<div class="slogan">
-			<p>Where do you want to go? I don't know.... WE DO!</p>
+			<p>&#10077 Where do you want to go? I don't know.... WE DO! &#10078</p>
 		</div>
 	</section>
 	<section id="container" class="js-hide-display" role="region">
 		<header role="banner" class="js-hide-display" id="nav">
-			<button class="searchAgain">Search Again</button>
+			<button class="searchAgain"><span>Search Again</span></button>
 		</header>
 		<div class="mainContent">
-			<div id="map"></div>
+			<div id="map" class="js-hide-display"></div>
 			<div id="results"></div>
 		</div>
 		

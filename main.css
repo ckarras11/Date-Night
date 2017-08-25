@@ -1,8 +1,74 @@
+/*HomePage Styling*/
+body{
+	background-image: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url('http://www.grayscale-wallpapers.com/grayscale/france-paris-restaurant.jpg');
+	font-family: 'Alice', serif;
+}
+
 h1{
 	text-align: center;
-	margin-top: 200px;
+	margin-top: 300px;
 	font-size: 56px;
+	font-family: 'Great Vibes', cursive;
+	color: #E5164E;
+	letter-spacing: 4px;
+	margin-bottom: 15px
 }
+
+#search, #buttons{
+	text-align: center;
+}
+#food, #drinks, #entertainment{
+	background: lightskyblue;
+    border: lightblue;
+    border-radius: 6px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#food:hover, #drinks:hover, #entertainment:hover{
+	border-radius: 50%; ;
+}
+#food img, #drinks img, #entertainment img{
+	width: 40px;
+
+}
+
+.searchbar{
+	margin-top: 15px;
+	font-size: 18px;
+  	appearance: none;
+  	box-shadow: none;
+  	border: solid black 1px;
+  	border-radius: 4px;
+  	background-color: lightskyblue;
+  	padding: 3px; 	
+}
+
+.searchbar:focus{
+	outline:none;	
+}
+
+.submit{
+	background-color: lightskyblue;
+	border: solid lightskyblue;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+}
+.submit:hover span:after{
+	content: ' \00bb';
+}
+.slogan{
+	text-align: center;
+	color: lightskyblue;
+}
+
+#copyright{
+	text-align: center;
+	color: white;
+}
+
+/*Responsive Layout for Results*/
 
 #container{
 	display: flex;
@@ -26,10 +92,10 @@ h1{
 	#map{
 	height: 500px;
 	width: 45%;
+
 	}
 }
 
-}
 @media (min-width: 375px) and (max-width: 667px) {
 	.mainContent{
 		display: flex;
@@ -39,40 +105,51 @@ h1{
 		width: 100%;
 		margin: 0 auto;
 
+
 	}
 }
+
 #map{
 	height: 300px;
 	margin-bottom: 15px;
-}
-#search, #buttons{
-	text-align: center;
+	border: solid black 1px;
+	border-radius: 10px;
 }
 
-.searchbar{
-	margin-top: 15px;
-}
-.slogan{
-	text-align: center;
-}
-#copyright{
-	text-align: center;
-}
+/*Search again Nav Bar*/
 
 #nav{
 	height: 50px;
 	margin-top: 10px;
 	width: 100%;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
-
+.searchAgain{
+	background-color: lightskyblue;
+	border: solid lightskyblue;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+	margin-top: 15px;
+}
+.searchAgain:hover span:after{
+	content: ' \00bb';
+}
+/*Results List styling*/
 
 ul{
 	height: 500px;
 	overflow: auto;
 	padding-left: 0;
 	margin-top: 0;
+}
+
+ul li{
+	background-color: white;
+	border: solid black 1px;
+    border-radius: 20px;
 }
 
 #results ul li:hover{
@@ -106,8 +183,10 @@ ul{
 	text-align: center;
 	padding: 5px;
 	width: 20px;
-
 }
+
+/*Toggle page views*/
+
 .js-hide-display{
 	display: none;
 }
