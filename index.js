@@ -9,7 +9,7 @@ let start = {};
 //This function is the intital api call
 //41.715624,-70.032247
 function getResponse(section, query){
-	console.log('load')
+	console.log('load');
 	const URL = `https://api.foursquare.com/v2/venues/explore?client_id=${clientId}
 															 &client_secret=${clientSecret}
 															 &ll=${start.lat},${start.lng}
@@ -21,15 +21,52 @@ function getResponse(section, query){
 		method: "GET",
 		url: URL,
 		success: function(data){
-			console.log(data);
+			createList(data);
+		}
+
+	});
+};
+
+//Handles search and passes value in search bar to query for api call
+//The section arg is undefined because it will override a query
+
+$(function handleQuery(document){
+	$('.search').on('click', '.submit', function(e){
+		e.preventDefault();
+		let query = $('.searchbar').val();
+		displayResults();
+		getResponse(undefined, query);
+		
+	});
+});
+
+//Handles food button and passes 'food' to the section arg
+
+$(function handleButtons(document){
+	$('#buttons').on('click', '#food', function(){
+		displayResults();
+		let section = 'food';
+		getResponse(section);
+	});
+	$('#buttons').on('click', '#drinks', function(){
+		displayResults();
+		let section = 'drinks';
+		getResponse(section);
+	});
+	$('#buttons').on('click', '#entertainment', function(){
+		displayResults();
+		let section = 'arts';
+		getResponse(section);
+	});
+});
+
+function createList(data){
+	console.log(data);
 			//This creates list element for each item returned
 			let list = "";
 			data.response.groups[0].items.forEach(item => {
 				let i = data.response.groups[0].items.indexOf(item) + 1;
-				/*let address = `${item.venue.location.address} 
-							   ${item.venue.location.city}, 
-							   ${item.venue.location.state} 
-							   ${item.venue.location.postalCode}`*/
+
 				let address = "";
 				if (item.venue.location.address !== undefined){
 					address = item.venue.location.address;
@@ -92,43 +129,8 @@ function getResponse(section, query){
 									${list}
 								  </ul>`);
 			
-		}
+}
 
-	});
-};
-
-//Handles search and passes value in search bar to query for api call
-//The section arg is undefined because it will override a query
-
-$(function handleQuery(document){
-	$('.search').on('click', '.submit', function(e){
-		e.preventDefault();
-		let query = $('.searchbar').val();
-		displayResults();
-		getResponse(undefined, query);
-		
-	});
-});
-
-//Handles food button and passes 'food' to the section arg
-
-$(function handleButtons(document){
-	$('#buttons').on('click', '#food', function(){
-		displayResults();
-		let section = 'food';
-		getResponse(section);
-	});
-	$('#buttons').on('click', '#drinks', function(){
-		displayResults();
-		let section = 'drinks';
-		getResponse(section);
-	});
-	$('#buttons').on('click', '#entertainment', function(){
-		displayResults();
-		let section = 'arts';
-		getResponse(section);
-	});
-});
 
 //Creates map in #map div with map centered on lat long
 
@@ -163,7 +165,7 @@ function addMarkers(){
     };
 }
 
-//Handles Search again button on the results page
+//Handles Search again button on the results page 
 
 $(function searchAgain(document){
 	$("#nav").on('click', '.searchAgain', function(){
@@ -171,11 +173,8 @@ $(function searchAgain(document){
 		$('#container').addClass("js-hide-display");
 		$('.mainContent').addClass("js-hide-display");
 		$('#nav').addClass("js-hide-display");
-
 		removeMarkers();
 		$(".searchbar").val("");
-
-
 	})
 });
 
@@ -196,17 +195,14 @@ function displayResults(){
 	$('#map').removeClass("js-hide-display");
 }
 
-
 function sucess(position){
 	let lat = position.coords.latitude;
 	let lng = position.coords.longitude;
 	start.lat = lat;
 	start.lng = lng;
 	console.log(lat,lng)
-
-
-
 }
+
 function failure(){
 	alert('Geolocation not available')
 }
