@@ -21,6 +21,8 @@ When a user clicks on a button or types in a query and searches the homepage is 
 unhidden.  The map will take the location data from the foursquare api call and create markers which are placed.  The map is centered on 
 the user's location.  
 
+![image](https://user-images.githubusercontent.com/30561347/29737978-2c9a02a6-89e6-11e7-8a0a-e13434e91775.png)
+
 ## Results
 The list is generated with javascript and the data recieved from the foursquare api.  The more info link takes the user to foursquare for 
 more information such as menu, pictures, and reviews.
