@@ -29,11 +29,12 @@ more information such as menu, pictures, and reviews.
 
 ![image](https://user-images.githubusercontent.com/30561347/29737988-6aac4748-89e6-11e7-8757-e989e25c2b25.png)
 
-
 ## Search Again
 At the top of the screen you are able to search again which unhides the home page and hides the result page.  Also the markers are cleared 
 by clearing the ``coordinates []`` and the search bar value is reset.  When another search is performed the dom is resest by setting results 
 to an empty string.
+
+![image](https://user-images.githubusercontent.com/30561347/29737999-a298ce4c-89e6-11e7-8760-adbed4afae36.png)
 
 ## Technologies Used
 * HTML
