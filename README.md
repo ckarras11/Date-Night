@@ -48,3 +48,5 @@ to an empty string.
 
 ## Responsive Design
 This page was made responsive using ``flexbox`` and ``@media querys``
+
+![image](https://user-images.githubusercontent.com/30561347/29738014-081e8504-89e7-11e7-8b52-d57459e941b4.png)
