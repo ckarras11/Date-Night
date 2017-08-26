@@ -16,6 +16,8 @@ This is the main screen for the app.  The three buttons below the title are for 
 of these buttons it will send an api request to foursquare with the corresponding section.  The search field allows a user to enter a 
 specific place or type of food.  This value is used in the api call to foursquare as a ``query``.
 
+![image](https://user-images.githubusercontent.com/30561347/29738007-d01f13f8-89e6-11e7-86a4-f06914bfbcef.png)
+
 ## Results Page Map
 When a user clicks on a button or types in a query and searches the homepage is hidden with ``js-hide-display`` and the results are
 unhidden.  The map will take the location data from the foursquare api call and create markers which are placed.  The map is centered on 
