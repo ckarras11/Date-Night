@@ -1,8 +1,7 @@
 # Date Night
 
 ## Overview
-This app allows users to search for places to go on "Date Night".  When a user searches for something the results are displayed in a list as
-well as on a map for visual representation.
+This app allows users to search for places to go on "Date Night".  When a user searches for something the results are displayed in a list as well as on a map for visual representation.  The direct link for the app is [here!](https://ckarras11.github.io/Date-Night/)
 
 ## GeoLocation
 When the page first loads it will ask you for permission to collect your location.    This is done using html geolocation.  This data is 
