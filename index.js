@@ -2,7 +2,7 @@ let clientId = "SSYNT1OJ1S0G44S211LRDRBAY530BAYWZYQXCXDUDN4DYAYK"
 let clientSecret = "SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA"
 let coordinates = [];
 let map;
-navigator.geolocation.getCurrentPosition(sucess, failure);
+navigator.geolocation.getCurrentPosition(success, failure);
 let start = {};
 
       
@@ -195,7 +195,7 @@ function displayResults(){
 	$('#map').removeClass("js-hide-display");
 }
 
-function sucess(position){
+function success(position){
 	let lat = position.coords.latitude;
 	let lng = position.coords.longitude;
 	start.lat = lat;
