@@ -1,10 +1,10 @@
-let map;
-let info = {
+var map;
+var info = {
 	clientId: 'SSYNT1OJ1S0G44S211LRDRBAY530BAYWZYQXCXDUDN4DYAYK',
 	start: {},
 	coordinates: []
 	}
-      
+ 
 // This function is the intital api call
 function getResponse(section, query) {
 	const URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
@@ -29,6 +29,7 @@ function getResponse(section, query) {
 };
 
 $(function handleStart(document) {
+	navigator.geolocation.getCurrentPosition(success, failure);
 	handleQuery();
 	handleButtons();
 });
@@ -37,7 +38,6 @@ $(function handleStart(document) {
 // The section arg is undefined because it will override a query
 
 function handleQuery() {
-	navigator.geolocation.getCurrentPosition(success, failure);
 	$('.search').on('click', '.submit', function(e) {
 		e.preventDefault();
 		let query = $('.searchbar').val();
