@@ -6,7 +6,7 @@ body{
 
 h1{
 	text-align: center;
-	margin-top: 300px;
+	margin-top: 15%;
 	font-size: 56px;
 	font-family: 'Great Vibes', cursive;
 	color: #E5164E;
@@ -22,19 +22,24 @@ h1{
     border: lightblue;
     border-radius: 6px;
     margin: 10px;
-    cursor: pointer;
+    margin-top: 0px;
+    cursor: pointer; 
+}
+#food span, #drinks span, #entertainment span{
+	font-weight: bold;
+	color: #474A49;
 }
 
 #food:hover, #drinks:hover, #entertainment:hover{
-	border-radius: 50%; ;
+	background-color: #1DC9C5;
 }
+
 #food img, #drinks img, #entertainment img{
 	width: 40px;
-
 }
 
-.searchbar{
-	margin-top: 15px;
+.searchbar, .locationBar{
+	/*margin-top: 15px;*/
 	font-size: 18px;
   	appearance: none;
   	box-shadow: none;
@@ -48,17 +53,18 @@ h1{
 	outline:none;	
 }
 
-.submit{
+.submit, .useLocation{
 	background-color: lightskyblue;
 	border: solid lightskyblue;
 	border-radius: 4px;
 	cursor: pointer;
 	font-size: 18px;
 }
-.submit:hover span:after{
-	content: ' \00bb';
+.submit:hover{
+	background-color: #1DC9C5;
+	border-color: #1DC9C5
 }
-.slogan{
+.instructions{
 	text-align: center;
 	color: lightskyblue;
 }
@@ -134,8 +140,9 @@ h1{
 	font-size: 18px;
 	margin-top: 15px;
 }
-.searchAgain:hover span:after{
-	content: ' \00bb';
+.searchAgain:hover{
+	background-color: #1DC9C5;
+	border-color: #1DC9C5
 }
 /*Results List styling*/
 
@@ -147,13 +154,19 @@ ul{
 }
 
 ul li{
-	background-color: white;
+	background-color: lightskyblue;
 	border: solid black 1px;
     border-radius: 20px;
 }
-
+.noResults li{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 300px;
+	font-size: 24px;
+}
 #results ul li:hover{
-	background-color: #e8eaed;
+	background-color: #1DC9C5;
 }
 
 .itemResult{
@@ -184,7 +197,10 @@ ul li{
 	padding: 5px;
 	width: 20px;
 }
-
+.moreInfo a{
+	text-decoration: none;
+	color: #E5164E;
+}
 /*Toggle page views*/
 
 .js-hide-display{

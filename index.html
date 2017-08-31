@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,21 +11,24 @@
 <body>
 	<section role="region" id="homepage">
 		<h1>Date Night</h1>
-		<div id="buttons">
-			<button id="food"><img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/food_and_drink_512pxGREY.png" alt="Picture of a loaf of bread and a bottle of wine"></button>
-			<button id="drinks"><img src="https://cdn0.iconfinder.com/data/icons/website-kit-2/512/icon_70-512.png" alt="Picture of a martini glass"></button>
-			<button id="entertainment"><img src="https://cdn2.iconfinder.com/data/icons/university-set-2/512/5-512.png" alt="Picture of theater masks"></button><br>
-		</div>
 		<form class="search" role="form" id="search">
+			<label id="location" for="searchbar" class="js-hide-display">
+				<p class="instructions">Enter location:</p>
+				<input id="locationBar" class=" locationBar" type="text" name="location" placeholder="Boston, MA" required="true">
+			</label>
 			<label for="searchbar">
+				<p class="instructions">Looking for something specific?</p>
 				<input class=" searchbar" type="text" name="search" placeholder="Maybe some Chinese?">
 			</label>
 			<label for="submit">
 				<button class="submit"><span>Search</span></button>
 			</label>
 		</form>
-		<div class="slogan">
-			<p>&#10077 Where do you want to go? I don't know.... WE DO! &#10078</p>
+		<div id="buttons">
+		<p class="instructions">Or you can browse by activity:</p>
+			<button id="food"><img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/food_and_drink_512pxGREY.png" alt="Picture of a loaf of bread and a bottle of wine"><br><span>Food</span></button>
+			<button id="drinks"><img src="https://cdn0.iconfinder.com/data/icons/website-kit-2/512/icon_70-512.png" alt="Picture of a martini glass"><br><span>Drinks</span></button>
+			<button id="entertainment"><img src="https://cdn2.iconfinder.com/data/icons/university-set-2/512/5-512.png" alt="Picture of theater masks"><br><span>Fun</span></button>
 		</div>
 	</section>
 	<section id="container" class="js-hide-display" role="region">
