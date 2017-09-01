@@ -5,8 +5,7 @@ This app allows users to search for places to go on "Date Night".  When a user s
 
 ## GeoLocation
 When the page first loads it will ask you for permission to collect your location.    This is done using html geolocation.  This data is 
-used for the api call to foursquare as well as centering the google map to your position.  If the user declines an alert will state 
-``'geolocation not available'``.
+used for the api call to foursquare as well as centering the google map to your position.  If the user declines a input box will appear prompting the user to input a location.  Geocoding is then used to derive a lat lng from their input.
 
 ![image](https://user-images.githubusercontent.com/30561347/29737745-5b6d2e14-89e1-11e7-9215-2b04af63c2a6.png)
 
@@ -42,7 +41,8 @@ to an empty string.
 * CSS
 * Javascript
 * jQuery
-* Google Maps Api
+* Google Maps Javascript Api
+* Google Maps Geocoding Api
 * Foursquare Api
 
 ## Responsive Design

@@ -201,6 +201,10 @@ ul li{
 	text-decoration: none;
 	color: #E5164E;
 }
+
+.moreInfo a:hover{
+	font-size: 20px;
+}
 /*Toggle page views*/
 
 .js-hide-display{

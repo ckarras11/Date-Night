@@ -8,7 +8,13 @@ var info = {
  
 // This function is the intital api call
 function getResponse(section, query, nearMe) {
-	let URL = ''
+	let URL = ''/*`https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
+																 &client_secret=SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA
+																 &query=${query}
+																 &ll=${info.start.lat},${info.start.lng}
+																 &section=${section}
+																 &limit=100
+																 &radius=40000&v=20170323`*/
 	// Checks if user is using lat lng or input a location
 	if (info.start.lat && info.start.lng ){
 		URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
@@ -60,6 +66,7 @@ function handleQuery() {
 		let nearMe = $('#locationBar').val()
 		// Prevents user from empty search
 		if (query){
+			getCoords(nearMe);
 			getResponse(undefined, query, nearMe);
 			displayResults();
 		}
@@ -77,18 +84,21 @@ function handleButtons() {
 		let section = 'food';
 		let nearMe = $('#locationBar').val() 
 		getResponse(section,undefined, nearMe);
+		getCoords(nearMe);
 	});
 	$('#buttons').on('click', '#drinks', function() {
 		displayResults();
 		let section = 'drinks';
 		let nearMe = $('#locationBar').val()
 		getResponse(section,undefined, nearMe);
+		getCoords(nearMe);
 	});
 	$('#buttons').on('click', '#entertainment', function() {
 		displayResults();
 		let section = 'arts';
 		let nearMe = $('#locationBar').val()
 		getResponse(section,undefined, nearMe);
+		getCoords(nearMe);
 	});
 };
 
@@ -169,18 +179,30 @@ function createLatLng(data) {
 }
 
 // Creates map in #map div with map centered on lat long
+
 function getCoords(nearMe) {
 	geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': nearMe}, function(results, status) {
-      if (status == 'OK') {
-        //map.setCenter(results[0].geometry.location);
-        console.log(results[0].geometry.location)
-      } 
-      else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+    $.ajax({
+		method: 'GET',
+		url: `https://maps.googleapis.com/maps/api/geocode/json?address=${nearMe}&key=AIzaSyBZmXH7T-f4iTw8avMgTIhXbQj0Sx213Bo`,
+		success: function(results) {
+			if (results.status == 'OK') {
+		        console.log(results.status);
+		        console.log(results.results[0].geometry.location)
+		        let lat = results.results[0].geometry.location.lat
+		        let lng = results.results[0].geometry.location.lng
+		        info.start.lat = lat;
+				info.start.lng = lng;
+		     } 
+		     else {
+		       	alert('Geocode was not successful for the following reason: ' + results.status);
+		     }	
+		}
+	});
 }
+
+// Creates map in #map div with map centered on lat long
+
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
