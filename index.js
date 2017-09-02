@@ -15,25 +15,7 @@ function getResponse(section, query, nearMe) {
 																 &section=${section}
 																 &limit=100
 																 &radius=40000&v=20170323`
-	// Checks if user is using lat lng or input a location
-	/*if (info.start.lat && info.start.lng ){
-		URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
-																 &client_secret=SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA
-																 &query=${query}
-																 &ll=${info.start.lat},${info.start.lng}
-																 &section=${section}
-																 &limit=100
-																 &radius=40000&v=20170323`;
-	}
-	else{
-		 URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
-																 &client_secret=SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA
-																 &near=${nearMe}
-																 &query=${query}
-																 &section=${section}
-																 &limit=100
-																 &radius=40000&v=20170323`;
-		}*/
+
 	$.ajax({
 		method: 'GET',
 		url: URL,
@@ -79,33 +61,30 @@ function handleQuery() {
 // Handles food, drinks, and fun button and passes 'food, drinks, or entertainment' to the section arg
 
 function handleButtons() {
-	$('#buttons').on('click', '#food', function() {
-		displayResults();
-		let section = 'food';
-		let nearMe = $('#locationBar').val(); 
-		getCoords(nearMe);
-		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
-		//getResponse(section,undefined, nearMe);
-		
+	/*$('#buttons').on('click', '#food', function() {
+		buttonPath('food');
 	});
 	$('#buttons').on('click', '#drinks', function() {
-		displayResults();
-		let section = 'drinks';
-		let nearMe = $('#locationBar').val();
-		getCoords(nearMe);
-		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
-		//getResponse(section,undefined, nearMe);
+		buttonPath('drinks');
 	});
 	$('#buttons').on('click', '#entertainment', function() {
+		buttonPath('arts');
+	});*/
+	$('#buttons button').click(function() {
+		buttonPath($(this).data('section'))
+	})
+
+};
+
+
+
+function buttonPath(section) {
 		displayResults();
-		let section = 'arts';
+		section = `${section}`;
 		let nearMe = $('#locationBar').val();
 		getCoords(nearMe);
 		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
-		//getResponse(section,undefined, nearMe);
-		
-	});
-};
+}
 
 // This creates list element for each item returned
 
