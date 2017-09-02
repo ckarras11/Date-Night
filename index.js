@@ -6,17 +6,17 @@ var info = {
 	coordinates: []
 	}
  
-// This function is the intital api call
+// This function is the foursquare api call for results
 function getResponse(section, query, nearMe) {
-	let URL = ''/*`https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
+	let URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
 																 &client_secret=SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA
 																 &query=${query}
 																 &ll=${info.start.lat},${info.start.lng}
 																 &section=${section}
 																 &limit=100
-																 &radius=40000&v=20170323`*/
+																 &radius=40000&v=20170323`
 	// Checks if user is using lat lng or input a location
-	if (info.start.lat && info.start.lng ){
+	/*if (info.start.lat && info.start.lng ){
 		URL = `https://api.foursquare.com/v2/venues/explore?client_id=${info.clientId}
 																 &client_secret=SKWPCMJ3315543VFGOUCQD5XEKKA1NKDJ2GRURT5EURRXUQA
 																 &query=${query}
@@ -33,7 +33,7 @@ function getResponse(section, query, nearMe) {
 																 &section=${section}
 																 &limit=100
 																 &radius=40000&v=20170323`;
-		}
+		}*/
 	$.ajax({
 		method: 'GET',
 		url: URL,
@@ -67,7 +67,7 @@ function handleQuery() {
 		// Prevents user from empty search
 		if (query){
 			getCoords(nearMe);
-			getResponse(undefined, query, nearMe);
+			setTimeout(function() {getResponse(undefined, query, nearMe);}, 1000);
 			displayResults();
 		}
 		else{
@@ -76,29 +76,34 @@ function handleQuery() {
 	});
 };
 
-// Handles food button and passes 'food' to the section arg
+// Handles food, drinks, and fun button and passes 'food, drinks, or entertainment' to the section arg
 
 function handleButtons() {
 	$('#buttons').on('click', '#food', function() {
 		displayResults();
 		let section = 'food';
-		let nearMe = $('#locationBar').val() 
-		getResponse(section,undefined, nearMe);
+		let nearMe = $('#locationBar').val(); 
 		getCoords(nearMe);
+		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
+		//getResponse(section,undefined, nearMe);
+		
 	});
 	$('#buttons').on('click', '#drinks', function() {
 		displayResults();
 		let section = 'drinks';
-		let nearMe = $('#locationBar').val()
-		getResponse(section,undefined, nearMe);
+		let nearMe = $('#locationBar').val();
 		getCoords(nearMe);
+		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
+		//getResponse(section,undefined, nearMe);
 	});
 	$('#buttons').on('click', '#entertainment', function() {
 		displayResults();
 		let section = 'arts';
-		let nearMe = $('#locationBar').val()
-		getResponse(section,undefined, nearMe);
+		let nearMe = $('#locationBar').val();
 		getCoords(nearMe);
+		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
+		//getResponse(section,undefined, nearMe);
+		
 	});
 };
 

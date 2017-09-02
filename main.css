@@ -17,6 +17,7 @@ h1{
 #search, #buttons{
 	text-align: center;
 }
+
 #food, #drinks, #entertainment{
 	background: lightskyblue;
     border: lightblue;
@@ -25,6 +26,7 @@ h1{
     margin-top: 0px;
     cursor: pointer; 
 }
+
 #food span, #drinks span, #entertainment span{
 	font-weight: bold;
 	color: #474A49;
@@ -60,10 +62,12 @@ h1{
 	cursor: pointer;
 	font-size: 18px;
 }
+
 .submit:hover{
 	background-color: #1DC9C5;
 	border-color: #1DC9C5
 }
+
 .instructions{
 	text-align: center;
 	color: lightskyblue;
@@ -84,7 +88,6 @@ h1{
 }
 
 @media (min-width: 1025px) {
-
 	.mainContent{
 	display: flex;
 	flex-direction: row;
@@ -98,7 +101,6 @@ h1{
 	#map{
 	height: 500px;
 	width: 45%;
-
 	}
 }
 
@@ -110,8 +112,6 @@ h1{
 	#results, #map{
 		width: 100%;
 		margin: 0 auto;
-
-
 	}
 }
 
@@ -140,10 +140,12 @@ h1{
 	font-size: 18px;
 	margin-top: 15px;
 }
+
 .searchAgain:hover{
 	background-color: #1DC9C5;
 	border-color: #1DC9C5
 }
+
 /*Results List styling*/
 
 ul{
@@ -158,6 +160,7 @@ ul li{
 	border: solid black 1px;
     border-radius: 20px;
 }
+
 .noResults li{
 	display: flex;
 	justify-content: center;
@@ -165,6 +168,7 @@ ul li{
 	height: 300px;
 	font-size: 24px;
 }
+
 #results ul li:hover{
 	background-color: #1DC9C5;
 }
@@ -182,10 +186,12 @@ ul li{
 .venueName{
 	font-weight: bold;
 }
+
 .location{
 	font-weight: 300;
 	font-size: 12px;
 }
+
 .rating{
 	float: right;
 }
@@ -197,6 +203,7 @@ ul li{
 	padding: 5px;
 	width: 20px;
 }
+
 .moreInfo a{
 	text-decoration: none;
 	color: #E5164E;
@@ -205,6 +212,7 @@ ul li{
 .moreInfo a:hover{
 	font-size: 20px;
 }
+
 /*Toggle page views*/
 
 .js-hide-display{
