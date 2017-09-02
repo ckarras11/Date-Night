@@ -37,7 +37,6 @@ $(function handleStart(document) {
 	searchAgain();
 });
 
-
 // Handles search and passes value in search bar to query for api call
 // The section arg is undefined because it will override a query
 
@@ -58,25 +57,15 @@ function handleQuery() {
 	});
 };
 
-// Handles food, drinks, and fun button and passes 'food, drinks, or entertainment' to the section arg
+// Event listener for food, drinks, and fun buttons
 
 function handleButtons() {
-	/*$('#buttons').on('click', '#food', function() {
-		buttonPath('food');
-	});
-	$('#buttons').on('click', '#drinks', function() {
-		buttonPath('drinks');
-	});
-	$('#buttons').on('click', '#entertainment', function() {
-		buttonPath('arts');
-	});*/
 	$('#buttons button').click(function() {
 		buttonPath($(this).data('section'))
 	})
-
 };
 
-
+// Handles screen change and api calls for buttons
 
 function buttonPath(section) {
 		displayResults();
