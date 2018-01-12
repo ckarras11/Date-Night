@@ -32,14 +32,16 @@ function getResponse(section, query, nearMe) {
 
 $(function handleStart(document) {
 	navigator.geolocation.getCurrentPosition(success, failure);
+});
+
+function start() {
 	handleQuery();
 	handleButtons();
 	searchAgain();
-});
+}
 
 // Handles search and passes value in search bar to query for api call
 // The section arg is undefined because it will override a query
-
 function handleQuery() {
 	$('.search').on('click', '.submit', function(e) {
 		e.preventDefault();
@@ -47,9 +49,12 @@ function handleQuery() {
 		let nearMe = $('#locationBar').val()
 		// Prevents user from empty search
 		if (query){
-			getCoords(nearMe);
-			setTimeout(function() {getResponse(undefined, query, nearMe);}, 1000);
-			displayResults();
+			if(nearMe !== '') {
+				getCoords(undefined, query, nearMe);
+			} else {
+				getResponse(undefined, query, nearMe);
+				displayResults();
+			}
 		}
 		else{
 			alert('Search field is empty')
@@ -58,7 +63,6 @@ function handleQuery() {
 };
 
 // Event listener for food, drinks, and fun buttons
-
 function handleButtons() {
 	$('#buttons button').click(function() {
 		buttonPath($(this).data('section'))
@@ -66,19 +70,18 @@ function handleButtons() {
 };
 
 // Handles screen change and api calls for buttons
-
 function buttonPath(section) {
-		displayResults();
-		section = `${section}`;
 		let nearMe = $('#locationBar').val();
-		getCoords(nearMe);
-		setTimeout(function() {getResponse(section, undefined, nearMe);}, 1000);
+		if(nearMe !== '') {
+			getCoords(section, undefined, nearMe);
+		} else {
+			getResponse(section, undefined, nearMe);
+			displayResults();
+		}
 }
 
 // This creates list element for each item returned
-
 function createList(data){	
-	console.log(data);
 	let list = "";
 	if (data.response.totalResults !== 0){
 		data.response.groups[0].items.forEach(item => {
@@ -139,7 +142,6 @@ function createList(data){
 }
 
 // This creates a lat long object for each item returned and pushes to array
-
 function createLatLng(data) {
 	data.response.groups[0].items.forEach(item => {
 		let i = data.response.groups[0].items.indexOf(item) + 1;
@@ -152,20 +154,19 @@ function createLatLng(data) {
 }
 
 // Creates map in #map div with map centered on lat long
-
-function getCoords(nearMe) {
+function getCoords(section, query, nearMe) {
 	geocoder = new google.maps.Geocoder();
     $.ajax({
 		method: 'GET',
 		url: `https://maps.googleapis.com/maps/api/geocode/json?address=${nearMe}&key=AIzaSyBZmXH7T-f4iTw8avMgTIhXbQj0Sx213Bo`,
 		success: function(results) {
 			if (results.status == 'OK') {
-		        console.log(results.status);
-		        console.log(results.results[0].geometry.location)
 		        let lat = results.results[0].geometry.location.lat
 		        let lng = results.results[0].geometry.location.lng
 		        info.start.lat = lat;
 				info.start.lng = lng;
+				query ? getResponse(undefined, query, nearMe) : getResponse(section, undefined, nearMe)
+				displayResults();
 		     } 
 		     else {
 		       	alert('Geocode was not successful for the following reason: ' + results.status);
@@ -175,8 +176,6 @@ function getCoords(nearMe) {
 }
 
 // Creates map in #map div with map centered on lat long
-
-
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
   		zoom: 12,
@@ -186,7 +185,6 @@ function initMap() {
 }
 
 // Adds markers to the map from the coordinates array (data from foursquare lat long)
-
 function addMarkers() {
 	for (let i = 0; i < info.coordinates.length; i++) {
         let coords = info.coordinates[i];
@@ -208,7 +206,6 @@ function addMarkers() {
 }
 
 // Handles Search again button on the results page 
-
 function searchAgain(){
 	$('#nav').on('click', '.searchAgain', function(){
 		$('#homepage').removeClass('js-hide-display');
@@ -221,13 +218,11 @@ function searchAgain(){
 };
 
 // Removes markers from map for new search
-
 function removeMarkers() {
 	info.coordinates = [];
 };
 
 // Adds and removes js-hide-display to display results
-
 function displayResults() {
 	$('#results').html('');
 	$('#homepage').addClass('js-hide-display');
@@ -238,16 +233,17 @@ function displayResults() {
 }
 
 // Sets users location when geolocation is allowed by user
-
 function success(position) {
 	let lat = position.coords.latitude;
 	let lng = position.coords.longitude;
 	info.start.lat = lat;
 	info.start.lng = lng;
+	$('#loader').addClass('js-hide-display');
+	start();
 }
 
-// Alerts user that geolocation was blocked
-
 function failure() {
-	$('#location').removeClass('js-hide-display')
+	$('#location').removeClass('js-hide-display');
+	$('#loader').addClass('js-hide-display');
+	start();
 }
