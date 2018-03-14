@@ -1,6 +1,6 @@
 /*HomePage Styling*/
 body{
-	background-image: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url('http://www.grayscale-wallpapers.com/grayscale/france-paris-restaurant.jpg');
+	background-image: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)), url('./france-paris-restaurant.jpg');
 	font-family: 'Alice', serif;
 }
 
