@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Date Night</title>
 	<meta charset="utf-8">
@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link href="https://fonts.googleapis.com/css?family=Alice|Great+Vibes" rel="stylesheet">
 </head>
+
 <body>
 	<section role="region" id="homepage">
 		<div class="cssload-loader" id="loader">Getting Location</div>
@@ -22,34 +23,50 @@
 				<input class=" searchbar" type="text" name="search" placeholder="How about chinese?">
 			</label>
 			<label for="submit">
-				<button class="submit"><span>Search</span></button>
+				<button class="submit">
+					<span>Search</span>
+				</button>
 			</label>
 		</form>
 		<div id="buttons">
-		<p class="instructions">Or you can browse by activity:</p>
-			<button id="food" data-section="food"><img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/food_and_drink_512pxGREY.png" alt="Picture of a loaf of bread and a bottle of wine"><br><span>Food</span></button>
-			<button id="drinks" data-section="drinks"><img src="https://cdn0.iconfinder.com/data/icons/website-kit-2/512/icon_70-512.png" alt="Picture of a martini glass"><br><span>Drinks</span></button>
-			<button id="entertainment" data-section="arts"><img src="https://cdn2.iconfinder.com/data/icons/university-set-2/512/5-512.png" alt="Picture of theater masks"><br><span>Fun</span></button>
+			<p class="instructions">Or you can browse by activity:</p>
+			<button id="food" data-section="food">
+				<img src="https://res.cloudinary.com/ckarras/image/upload/f_auto,w_40,h_40/v1529804601/datenight/food.png" alt="Picture of a loaf of bread and a bottle of wine">
+				<br>
+				<span>Food</span>
+			</button>
+			<button id="drinks" data-section="drinks">
+				<img src="https://res.cloudinary.com/ckarras/image/upload/f_auto,w_40,h_40/v1529804601/datenight/drink.png" alt="Picture of a martini glass">
+				<br>
+				<span>Drinks</span>
+			</button>
+			<button id="entertainment" data-section="arts">
+				<img src="https://res.cloudinary.com/ckarras/image/upload/f_auto,w_40,h_40/v1529804601/datenight/entertainment.png" alt="Picture of theater masks">
+				<br>
+				<span>Fun</span>
+			</button>
 		</div>
 	</section>
 	<section id="container" class="js-hide-display" role="region">
 		<header role="banner" class="js-hide-display" id="nav">
-			<button class="searchAgain"><span>Search Again</span></button>
+			<button class="searchAgain">
+				<span>Search Again</span>
+			</button>
 		</header>
 		<div class="mainContent">
 			<div id="map" class="js-hide-display"></div>
 			<div id="results"></div>
 		</div>
-		
-		
+
+
 	</section>
 	<footer role="contentinfo" id="copyright">
 		<p>Copyright © 2017</p>
 	</footer>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="index.js" type="text/javascript"></script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJnuciyBTCyfkqfvfRFaHFIVlpAFBrGzw">
-    </script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="index.js" type="text/javascript"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJnuciyBTCyfkqfvfRFaHFIVlpAFBrGzw">
+	</script>
 </body>
+
 </html>
